@@ -1,7 +1,6 @@
 <template>
   <!--导航区-->
-  <div class="long-background">
-    <div class="el-background">
+
       <div class="nav-container">
         <!--进度条-->
         <div class="demo-progress">
@@ -53,7 +52,6 @@
         </div>
       </div>
 
-
       <h1>标签：影音书分享</h1>
       <!-- 可以复用你的卡片组件等 -->
       <div class="white-background">
@@ -73,8 +71,8 @@
         </div>
       </div>
 
-
-
+  <div class="long-background">
+    <div class="el-background">
     </div>
   </div>
 </template>
@@ -299,10 +297,12 @@ const handleTabClick = (tab) => {
       rgba(255, 218, 236, 1) 100%   /* 樱花粉 */
   );
   background-attachment: fixed;
-  position: relative;
-  overflow: hidden;
-  min-height: 100vh; /* 让背景至少占满可视区域 */
-  z-index: -1; /* 确保它在所有其他元素下面 */
+  position: fixed;  /* 使用固定定位 */
+  top: 0;  /* 从页面顶部开始 */
+  left: 0;
+  right: 0;
+  bottom: 0;  /* 占满整个屏幕 */
+  z-index: -1; /* 确保它在其他内容下 */
 }
 
 @keyframes sakura-fall {
@@ -319,20 +319,21 @@ h1{
   font-size: 1.5rem;
 }
 .white-background {
-  background-color: rgba(255, 255, 255, 0.5);
-  margin-top: 90px;
+  background-color: rgba(255, 255, 255, 0.8);
   border-radius: 10px;
   width: 80%;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 
-  margin-left: auto;   /* 左侧自动填充 */
-  margin-right: auto;  /* 右侧自动填充 */
-  position: absolute;  /* 使用绝对定位让它填充剩余空间 */
-  top: 80px;           /* 确保它从 80px 处开始 */
-  bottom: 0;           /* 让它延伸到底部 */
-  left: 0;             /* 让它填充整个容器宽度 */
-  right: 0;            /* 让它填充整个容器宽度 */
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  top: 80px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: calc(100vh - 80px);
 }
+
 h3{
   text-align: center;
   padding-top: 30px;

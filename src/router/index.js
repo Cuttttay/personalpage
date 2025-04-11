@@ -7,7 +7,6 @@ import person from '@/view/person.vue'
 import diary from '@/view/diary.vue'
 import program from '@/view/program.vue'
 import share from '@/view/share.vue'
-import main from '@/App.vue'
 
 //第二步：创建路由器
 const router =createRouter({

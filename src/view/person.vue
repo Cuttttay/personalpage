@@ -86,11 +86,7 @@
         <div class="header">
 
           <h1>个人项目</h1>
-          <div class="button-container">
-            <el-button round>全部</el-button>
-            <el-button type="primary" round>已完成</el-button>
-            <el-button type="info" round>未完成</el-button>
-          </div>
+
         </div>
 
         <div class="project">一些完成了或者正在构思的项目</div>
@@ -114,9 +110,10 @@
       <div class="project-section">
         <div class="header">
           <h1>博客文章</h1>
+        </div>
           <div class="project">日常的所思所想...天马行空</div>
         </div>
-      </div>
+
 
       <div class="cards-container">
         <a href="http://sakura.sakuraharuka.top/archives/zhai-men-yue-du-yo">
@@ -377,14 +374,14 @@
   position: relative;
 
   /* 基础：内容驱动高度 */
-  min-height: 70vh;           /* 保证最小展示区域 */
-  max-height: 120vh;           /* 限制最大高度 */
+  min-height: 70vh;
+  max-height: 120vh;
   padding-bottom: 30vh;
   /* 背景图定位优化 */
   background-position: center 25%;
 
   /* 内容保护机制 */
-  padding-bottom: 30vh;        /* 预留人物展示空间 */
+  padding-bottom: 30vh;
   box-sizing: border-box;
 
   overflow: hidden;

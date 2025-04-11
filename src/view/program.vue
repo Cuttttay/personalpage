@@ -1,69 +1,71 @@
 <template>
-    <!--导航区-->
-  <div class="long-background">
-    <div class="el-background">
-    <div class="nav-container">
-      <!--进度条-->
-      <div class="demo-progress">
-        <el-progress
-            :percentage="scrollPercentage"
-            :format="format"
-            :indeterminate="false"
-            style="width: 100%"
-            class="pink-progress"
-        />
-      </div>
+  <!--导航区-->
 
-
-
-      <div class="nav-content">
-        <!-- 头像部分 -->
-        <div class="nav-left">
-          <el-avatar
-              :size="50"
-              :src="avatarImg"
-              class="nav-avatar"
-          />
-          <span class="nav-name">Sakura</span>
-        </div>
-
-
-        <!-- 导航标签部分 -->
-        <div class="nav-right">
-          <el-input
-              placeholder="Search..."
-              v-model="searchText"
-          >
-            <template #prefix>
-              <el-icon><search /></el-icon>
-            </template>
-          </el-input>
-
-          <el-tabs
-              class="nav-tabs"
-              v-model="activeTab"
-              @tab-click="handleTabClick">
-            <el-tab-pane name="person" label="个人主页"></el-tab-pane>
-            <el-tab-pane name="program" label="编程心得"></el-tab-pane>
-            <el-tab-pane name="share" label="影音书分享"></el-tab-pane>
-            <el-tab-pane name="diary" label="探店日记"></el-tab-pane>
-          </el-tabs>
-
-        </div>
-      </div>
+  <div class="nav-container">
+    <!--进度条-->
+    <div class="demo-progress">
+      <el-progress
+          :percentage="scrollPercentage"
+          :format="format"
+          :indeterminate="false"
+          style="width: 100%"
+          class="pink-progress"
+      />
     </div>
 
-        <router-view></router-view>
-        <h1>标签：编程心得</h1>
-    <!-- 可以复用你的卡片组件等 -->
-      <div class="white-background">
-        <h3>目前还未施工哟</h3>
+
+
+    <div class="nav-content">
+      <!-- 头像部分 -->
+      <div class="nav-left">
+        <el-avatar
+            :size="50"
+            :src="avatarImg"
+            class="nav-avatar"
+        />
+        <span class="nav-name">Sakura</span>
       </div>
+
+
+      <!-- 导航标签部分 -->
+      <div class="nav-right">
+        <el-input
+            placeholder="Search..."
+            v-model="searchText"
+        >
+          <template #prefix>
+            <el-icon><search /></el-icon>
+          </template>
+        </el-input>
+
+        <el-tabs
+            class="nav-tabs"
+            v-model="activeTab"
+            @tab-click="handleTabClick">
+          <el-tab-pane name="person" label="个人主页"></el-tab-pane>
+          <el-tab-pane name="program" label="编程心得"></el-tab-pane>
+          <el-tab-pane name="share" label="影音书分享"></el-tab-pane>
+          <el-tab-pane name="diary" label="探店日记"></el-tab-pane>
+        </el-tabs>
+
+      </div>
+    </div>
+  </div>
+
+  <h1>标签：编程心得</h1>
+  <!-- 可以复用你的卡片组件等 -->
+  <div class="white-background">
+    <h3>目前还未开工哟</h3>
+
+  </div>
+
+  <div class="long-background">
+    <div class="el-background">
     </div>
   </div>
 </template>
 
-<script setup lang="js">
+<script setup>
 
 import {Search} from "@element-plus/icons-vue";
 import { useRoute, useRouter } from 'vue-router'
@@ -98,7 +100,6 @@ onUnmounted(() => {
 //路由部分
 const route = useRoute()
 const router = useRouter()
-
 const activeTab = ref(route.name)
 
 
@@ -110,7 +111,6 @@ watch(() => route.name, (newVal) => {
 const handleTabClick = (tab) => {
   router.push({ name: tab.props.name})
 }
-
 </script>
 
 <style scoped>
@@ -161,6 +161,7 @@ const handleTabClick = (tab) => {
 
 .nav-tabs {
   margin-bottom: 0;
+  z-index: 1001;
 }
 .nav-tabs .el-tabs__header {
   margin-bottom: 0;
@@ -284,10 +285,12 @@ const handleTabClick = (tab) => {
       rgba(255, 218, 236, 1) 100%   /* 樱花粉 */
   );
   background-attachment: fixed;
-  position: relative;
-  overflow: hidden;
-  min-height: 100vh; /* 让背景至少占满可视区域 */
-  z-index: -1; /* 确保它在所有其他元素下面 */
+  position: fixed;  /* 使用固定定位 */
+  top: 0;  /* 从页面顶部开始 */
+  left: 0;
+  right: 0;
+  bottom: 0;  /* 占满整个屏幕 */
+  z-index: -1; /* 确保它在其他内容下 */
 }
 
 @keyframes sakura-fall {
@@ -304,20 +307,22 @@ h1{
   font-size: 1.5rem;
 }
 .white-background {
-  background-color: rgba(255, 255, 255, 0.5);
-  margin-top: 90px;
+  background-color: rgba(255, 255, 255, 0.8);
   border-radius: 10px;
   width: 80%;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 
-  margin-left: auto;   /* 左侧自动填充 */
-  margin-right: auto;  /* 右侧自动填充 */
-  position: absolute;  /* 使用绝对定位让它填充剩余空间 */
-  top: 80px;           /* 确保它从 80px 处开始 */
-  bottom: 0;           /* 让它延伸到底部 */
-  left: 0;             /* 让它填充整个容器宽度 */
-  right: 0;            /* 让它填充整个容器宽度 */
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  top: 80px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: calc(100vh - 80px);
 }
+
+
 h3{
   text-align: center;
   padding-top: 30px;
@@ -325,8 +330,52 @@ h3{
   color: dimgrey;
   font-size: 1rem;
 }
-.cards-container a {
-  text-decoration: none !important;  /* 强制去掉下划线 */
-  color: inherit;  /* 确保文本颜色继承父元素 */
+
+
+
+/*卡片样式*/
+.cards-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* 卡片样式 */
+.project-card {
+  flex: 1 1 300px;
+  max-width: 300px;
+  min-width: 250px;
+  margin: 20px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  overflow: hidden; /* 确保图片不会溢出 */
+  position: relative;
+}
+
+.project-card img {
+  width: 100%;
+  height: auto; /* 保持图片比例 */
+  object-fit: cover; /* 确保图片填充容器 */
+}
+
+.project-card .el-card__header {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.project-description {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #777;
+  margin-top: 10px;
+}
+
+.project-card a {
+  text-decoration: none;
+  color: inherit;
 }
 </style>
